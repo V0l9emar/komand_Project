@@ -1,12 +1,15 @@
 body{
   font-family: 'Roboto', sans-serif;
   user-select: none;
+  background-color: # f2f2f2;
 }
 
 *:focus{
   outline: none;
 }
 
+
+/*  ################################  Header  ##############################  */
 header{
   margin: auto;
   padding: 36px;
@@ -32,7 +35,7 @@ h1{
   margin-top: -20px;
   margin-right: 40px;
   float: right;
-  width: 125px;
+  width: 135px;
   display: flex;
   border: 1px solid silver;
   border-radius: 10px;
@@ -56,4 +59,42 @@ h1{
   /* border: 3px solid silver; */
   font-size: 1.5em;
   font-weight: 700;
+}
+
+
+/*  ################################  Main  ##############################  */
+
+main{
+  max-width: 90%;
+  margin: 40px auto;
+}
+.new__plan{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  /* flex-wrap: wrap; */
+}
+.input__div{
+  /* border: 1px solid gray; */
+  width: 100%;
+}
+
+.info__div{
+  /* border: 1px solid gray; */
+  background-color: #d9d9d9;
+  width: 100%;
+}
+
+input{
+  padding: 5px;
+  width: 80%;
+  font-size: 18px;
+  border: 1px solid silver;
+}
+
+.input__div-p{
+  color: silver;
+  font-size: 12px;
+  margin: 32px 0 12px 0;
 }
