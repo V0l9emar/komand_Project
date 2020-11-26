@@ -69,7 +69,7 @@ main{
   margin: 40px auto;
 }
 .new__plan{
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   width: 100%;
 
@@ -82,8 +82,10 @@ main{
 
 .info__div{
   /* border: 1px solid gray; */
+  /* display: flex; */
+  /* flex-direction: column; */
   background-color: #d9d9d9;
-  width: 100%;
+  width: 50%;
 }
 
 input{
