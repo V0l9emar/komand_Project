@@ -95,6 +95,11 @@ input{
 
 .input__div-p{
   color: silver;
-  font-size: 12px;
-  margin: 32px 0 12px 0;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.info__div-name{
+  text-align: center;
+
 }
