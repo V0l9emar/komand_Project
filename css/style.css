@@ -99,7 +99,35 @@ input{
   margin-top: 16px;
 }
 
+
+.info_div-block{
+  margin: auto;
+  width: 80%;
+}
 .info__div-name{
   text-align: center;
+
+}
+
+.info__div-head{
+  font-weight: bold;
+}
+
+.info__div-earned, .info__div-monthly, .info__div-fullsumm, .info__div-days {
+  display: flex;
+  justify-content: space-between;
+}
+.info__div-span{
+  font-size: 15px;
+  color: gray;
+  margin-top: 10px;
+}
+.info__div-spanValue{
+  color: #001e80;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.line{
+  margin-top: 0;
 
 }
