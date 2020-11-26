@@ -1,7 +1,7 @@
 body{
   font-family: 'Roboto', sans-serif;
   user-select: none;
-  background-color: # f2f2f2;
+  /* background-color: #f2f2f2; */
 }
 
 *:focus{
@@ -42,12 +42,12 @@ h1{
   text-align: right;
   background-image: linear-gradient(to right, #00124d, white);
 }
-.butt__add:hover{
+.butt__add:hover, .info__div-delete:hover{
   cursor: pointer;
 }
 
 .butt__text{
-  margin: 15px;
+  margin: 15px 5px 15px 15px;
   font-weight: 700;
   color: #fff;
 }
@@ -68,6 +68,10 @@ main{
   max-width: 90%;
   margin: 40px auto;
 }
+
+section{
+  margin-bottom: 20px;
+}
 .new__plan{
   display: flex;
   justify-content: center;
@@ -85,6 +89,10 @@ main{
   background-color: #d9d9d9;
   width: 100%;
 }
+.info_div-block, .new__elm-block{
+  margin: auto;
+  width: 80%;
+}
 
 input{
   padding: 5px;
@@ -99,23 +107,22 @@ input{
   margin-top: 16px;
 }
 
-
-.info_div-block{
-  margin: auto;
-  width: 80%;
-}
-.info__div-name{
+.info__div-add-data{
   text-align: center;
 
 }
 
-.info__div-head{
+.info__div-named{
   font-weight: bold;
 }
 
-.info__div-earned, .info__div-monthly, .info__div-fullsumm, .info__div-days {
+.info__div-earned, .info__div-monthly, .info__div-fullsumm, .info__div-days, .info__div-add-data {
   display: flex;
   justify-content: space-between;
+}
+.info__div-buttons-block{
+  display: flex;
+  justify-content: space-around;
 }
 .info__div-span{
   font-size: 15px;
@@ -130,4 +137,22 @@ input{
 .line{
   margin-top: 0;
 
+}
+.info__div-delete{
+  border-radius: 10px;
+  margin: 15px;
+  padding: 10px 27px;
+  font-weight: 700;
+  color: #fff;
+  /* background-image: linear-gradient(to right, #00124d, white); */
+  background-color: #001e80;
+}
+.info__div-edit{
+  border-radius: 10px;
+  margin: 15px;
+  padding: 10px 37px;
+  font-weight: 700;
+  color: #fff;
+  /* background-image: linear-gradient(to right, #00124d, white); */
+  background-color: #001e80;
 }
