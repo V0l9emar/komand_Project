@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
   /*
    *  Array with names
   */
-  let infoValue = [ 'Название', 'Доход:', 'Ежемесечный взнос:', 'Конечная сумма:', 'Всего дней:','Процентная ставка:'];
+  let infoValue = ['Доход:', 'Ежемесечный взнос:', 'Конечная сумма:', 'Всего дней:','Процентная ставка:'];
   let dataValue = [];
 
   // function newCard(){
@@ -37,9 +37,15 @@ window.addEventListener('load', () => {
   */
   buttonCreate.addEventListener('click', function(){
 
-    dataValue.push(newName.value, neededCost.value, newDate.value, haveCost.value, newPercent.value)
+    dataValue.push(neededCost.value, newDate.value, haveCost.value, newPercent.value)
 
     console.log(dataValue);
+
+    // let newCreatedName = document.createElement('div');
+    let newCreatedHeaderName = document.createElement('h2');
+    newCreatedHeaderName.innerHTML = newName.value;
+    newCreatedHeaderName.classList.add('info__div-named');
+    newBlock.append(newCreatedHeaderName)
 
     infoValue.forEach(elm => {
 
@@ -65,6 +71,7 @@ window.addEventListener('load', () => {
       // console.log(newCreatedName.childNodes[0])
       console.log(newCreatedName)
     });
+    console.log(newBlock)
     let buttonsBlock = document.createElement('div')
     let delButoon = document.createElement('button');
     let editButoon = document.createElement('button');
