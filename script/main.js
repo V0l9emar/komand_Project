@@ -38,17 +38,23 @@ window.addEventListener('load', () => {
   buttonCreate.addEventListener('click', function(){
 
     dataValue.push(neededCost.value, newDate.value, haveCost.value, newPercent.value)
-
     console.log(dataValue);
 
-    // let newCreatedName = document.createElement('div');
+    let newCreatedBlock = document.createElement('div')
     let newCreatedHeaderName = document.createElement('h2');
     newCreatedHeaderName.innerHTML = newName.value;
+    newCreatedBlock.classList.add('info__created-block');
     newCreatedHeaderName.classList.add('info__div-named');
-    newBlock.append(newCreatedHeaderName)
+
+    newBlock.append(newCreatedBlock)
+    newCreatedBlock.append(newCreatedHeaderName)
+
+
+  /*
+   *  Pereberayem elementi
+  */
 
     infoValue.forEach(elm => {
-
       let newCreatedName = document.createElement('div');
       let newCreatedSpanName = document.createElement('span');
       let newCreatedSpanValue = document.createElement('span');
@@ -65,9 +71,9 @@ window.addEventListener('load', () => {
 
 
 
-      newBlock.append(newCreatedName);
+      newCreatedBlock.append(newCreatedName);
       newCreatedName.append(newCreatedSpanName);
-      newBlock.append(hr);
+      newCreatedBlock.append(hr);
       // console.log(newCreatedName.childNodes[0])
       console.log(newCreatedName)
     });
@@ -83,9 +89,21 @@ window.addEventListener('load', () => {
     delButoon.innerHTML = 'Delete';
     editButoon.innerHTML = 'Edit';
 
-    newBlock.append(buttonsBlock);
+    newCreatedBlock.append(buttonsBlock);
     buttonsBlock.append(delButoon);
     buttonsBlock.append(editButoon);
+
+    /*
+     *    Delete button click
+    */
+    delButoon.addEventListener('click', (event) => {
+      console.log(delButoon);
+      // delButoon.remove
+      delButoon.removeChild()
+
+    })
+
   })
+
 })
 
