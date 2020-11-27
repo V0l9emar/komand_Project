@@ -101,6 +101,12 @@ input{
   border: 1px solid silver;
 }
 
+input::-webkit-inner-spin-button,
+input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
 .input__div-p{
   color: silver;
   font-size: 14px;
