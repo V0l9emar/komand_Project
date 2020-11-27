@@ -101,7 +101,7 @@ window.addEventListener("load", () => {
       newCreatedName.append(newCreatedSpanValue);
       newCreatedBlock.append(hr);
       // console.log(newCreatedName.childNodes[0])
-      console.log(newCreatedName);
+      // console.log(newCreatedName);
     }
     console.log(newBlock);
 
@@ -124,9 +124,10 @@ window.addEventListener("load", () => {
      *    Delete button click
      */
     delButoon.addEventListener("click", (event) => {
-      console.log(delButoon);
+      console.log(newCreatedBlock);
+      newCreatedBlock.remove();
       // delButoon.remove
-      delButoon.removeChild();
+      // delButoon
     });
 
     editButoon.addEventListener("click", (event) => {
