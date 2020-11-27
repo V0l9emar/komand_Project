@@ -47,24 +47,24 @@ window.addEventListener("load", () => {
    */
   buttonCreate.addEventListener("click", function () {
     let card = {
-      "Доход:": "5",
-      "Ежемесечный взнос:": "1",
-      "Конечная сумма:": neededCost.value,
+      "Доход:": `21 059 ₽`,
+      "Ежемесечный взнос:": `10 000 ₽`,
+      "Конечная сумма:": `${neededCost.value} ₽`,
       "Всего дней:": newDate.value,
-      "Процентная ставка:": newPercent.value,
+      "Процентная ставка:": `${newPercent.value}% годовых`,
     };
     // for (let key in card) {
     //   console.log(key);
     //   console.log(card[key]);
     // }
 
-    dataValue.push(
-      neededCost.value,
-      newDate.value,
-      haveCost.value,
-      newPercent.value
-    );
-    console.log(dataValue);
+    // dataValue.push(
+    //   neededCost.value,
+    //   newDate.value,
+    //   haveCost.value,
+    //   newPercent.value
+    // );
+    // console.log(dataValue);
 
     let newCreatedBlock = document.createElement("div");
     let newCreatedHeaderName = document.createElement("h2");
@@ -80,7 +80,7 @@ window.addEventListener("load", () => {
      */
 
     // infoValue.forEach((elm) => {
-      for (let key in card) {
+    for (let key in card) {
       let newCreatedName = document.createElement("div");
       let newCreatedSpanName = document.createElement("span");
       let newCreatedSpanValue = document.createElement("span");
@@ -102,7 +102,7 @@ window.addEventListener("load", () => {
       newCreatedBlock.append(hr);
       // console.log(newCreatedName.childNodes[0])
       console.log(newCreatedName);
-    };
+    }
     console.log(newBlock);
 
     let buttonsBlock = document.createElement("div");
