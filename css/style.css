@@ -89,7 +89,7 @@ section{
   background-color: #e6e6e6;
   width: 100%;
 }
-.info_div-block, .new__elm-block{
+.info_div-block, .info__created-block{
   margin: auto;
   width: 80%;
 }
@@ -142,8 +142,8 @@ input{
 /*
   * New  created block  -------------------------
 */
-.new__elm-block{
-  margin-bottom: 20px;
+.info__created-block{
+  margin-bottom: 100px;
 }
 .info__div-delete{
   border-radius: 10px;
