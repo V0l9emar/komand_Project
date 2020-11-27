@@ -47,10 +47,10 @@ window.addEventListener("load", () => {
    */
   buttonCreate.addEventListener("click", function () {
     let card = {
-      "Доход:": `21 059 ₽`,
+      "Доход по %:": `21 059 ₽`,
       "Ежемесечный взнос:": `10 000 ₽`,
       "Конечная сумма:": `${neededCost.value} ₽`,
-      "Всего дней:": newDate.value,
+      "Всего месяцев:": newDate.value,
       "Процентная ставка:": `${newPercent.value}% годовых`,
     };
     // for (let key in card) {
