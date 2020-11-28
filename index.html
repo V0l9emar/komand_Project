@@ -33,22 +33,22 @@
             <label for="">
               <p class="input__div-p">Требуемая сумма:</p>
               <!-- <input type="number" name="" id=""> -->
-              <input class="w3-input w3-animate-input needed-cost" type="number" style="width:185px">
+              <input class="w3-input w3-animate-input final-amount" type="number" style="width:185px">
             </label>
             <label for="">
-              <p class="input__div-p">Срок (Месяцев):</p>
+              <p class="input__div-p">Срок вклада (Мес):</p>
               <!-- <input type="number" name="" id=""> -->
               <input class="w3-input w3-animate-input new-date" type="number" style="width:185px">
             </label>
             <label for="">
               <p class="input__div-p">Стартовая сумма вклада:</p>
               <!-- <input type="number" name="" id=""> -->
-              <input class="w3-input w3-animate-input have-cost" type="number" style="width:185px">
+              <input class="w3-input w3-animate-input have-amount" type="number" style="width:185px">
             </label>
             <label for="">
               <p class="input__div-p">Процент по вкладу:</p>
               <!-- <input type="number" name="" id=""> -->
-              <input class="w3-input w3-animate-input new-percent" type="number" style="width:185px">
+              <input class="w3-input w3-animate-input new-percent" type="number" style="width:185px" id="percent">
             </label>
           </form>
         </div>
@@ -58,36 +58,36 @@
               <h2 class="info__div-named" id="name">Название вклада</h2>
             </div>
             <div class="info__div-add-data" id="earned">
-              <span class="info__div-span">Доход по %</span>
-              <span class="info__div-spanValue">0 ₽</span>
+              <span class="info__div-span">Прибыль по %</span>
+              <span class="info__div-spanValue" id="earnedByPercent">0 ₽</span>
             </div>
             <hr class="line" />
             <div class="info__div-add-data">
               <span class="info__div-span" id="">Ежемесечный взнос</span>
-              <span class="info__div-spanValue">0 ₽</span>
+              <span class="info__div-spanValue" id="byMonth">0 ₽</span>
             </div>
             <hr class="line" />
             <div class="info__div-add-data">
               <span class="info__div-span">Конечная сумма</span>
-              <span class="info__div-spanValue">0 ₽</span>
+              <span class="info__div-spanValue" id="finalSumm">0 ₽</span>
 
             </div>
             <hr class="line"/>
             <div class="info__div-add-data">
               <span class="info__div-span">Количество месяцев</span>
-              <span class="info__div-spanValue">0</span>
+              <span class="info__div-spanValue" id="month">0</span>
             </div>
             <hr class="line"/>
             <div class="info__div-add-data">
               <span class="info__div-span">Процентная ставка</span>
-              <span class="info__div-spanValue">0% годовых</span>
+              <span class="info__div-spanValue" id="curPercnt">0% в год</span>
             </div>
 
           </div>
         </div>
       </section>
       <section>
-        <div class="info__div">
+        <div class="info__div-new">
           <div class="new__elm-block">
 
           </div>

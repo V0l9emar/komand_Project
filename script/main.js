@@ -3,12 +3,28 @@ window.addEventListener("load", () => {
    *  announcement get data from inputs
    */
   let newName = document.querySelector(".new-name");
-  let neededCost = document.querySelector(".needed-cost");
-  let newDate = document.querySelector(".new-date");
-  let haveCost = document.querySelector(".have-cost");
+  let finalAmount = document.querySelector(".final-amount");
+  let termOfDeposit = document.querySelector(".new-date");
+  let haveAmount = document.querySelector(".have-amount");
   let newPercent = document.querySelector(".new-percent");
   let form = document.querySelector("form");
-  let input = document.querySelectorAll("input");
+  // let input = document.querySelectorAll("input");
+
+
+  let earnedByPercent = document.querySelector('#earnedByPercent');
+  let byMonth = document.querySelector('#byMonth');
+  let finalSumm = document.querySelector('#finalSumm');
+  let month = document.querySelector('#month');
+  let percent = document.querySelector('#percent');
+  let curPercnt = document.querySelector('#curPercnt');
+  // console.log(curPercnt.innerHTML)
+
+
+  // percent.addEventListener('keyup', (event) => {
+  //   let res = `${curPercnt.innerHTML}% годовых`;
+  //   res += event.key;
+  //   // console.log(event.key)
+  // })
 
   /*
    *  announcement button for create elements
@@ -28,8 +44,8 @@ window.addEventListener("load", () => {
   // let card = {
   //   'Доход:': '5',
   //   'Ежемесечный взнос:': '1',
-  //   'Конечная сумма:': neededCost.value,
-  //   'Всего дней:': newDate.value,
+  //   'Конечная сумма:': finalAmount.value,
+  //   'Всего дней:': termOfDeposit.value,
   //   'Процентная ставка:': newPercent.value,
   // }
   // for(let key in card){
@@ -46,22 +62,27 @@ window.addEventListener("load", () => {
    *    Click to create new card
    */
   buttonCreate.addEventListener("click", function () {
+    let earnedAmount = ((haveAmount.value/100)*newPercent.value) * (termOfDeposit.value/12);
+    let byMonth = (finalAmount.value - haveAmount.value - earnedAmount)/termOfDeposit.value;
+    console.log(earnedAmount)
     let card = {
-      "Доход по %:": `21 059 ₽`,
-      "Ежемесечный взнос:": `10 000 ₽`,
-      "Конечная сумма:": `${neededCost.value} ₽`,
-      "Всего месяцев:": newDate.value,
-      "Процентная ставка:": `${newPercent.value}% годовых`,
+      "Прибыль по %:": `${earnedAmount.toFixed(2)} ₽`,
+      "Ежемесечный взнос:": ` ${byMonth.toFixed(2)} ₽`,
+      "Конечная сумма:": `${finalAmount.value} ₽`,
+      "Всего месяцев:": termOfDeposit.value,
+      "Процентная ставка:": `${newPercent.value}% в год`,
     };
+    console.log(newPercent.value)
+
     // for (let key in card) {
     //   console.log(key);
     //   console.log(card[key]);
     // }
 
     // dataValue.push(
-    //   neededCost.value,
-    //   newDate.value,
-    //   haveCost.value,
+    //   finalAmount.value,
+    //   termOfDeposit.value,
+    //   haveAmount.value,
     //   newPercent.value
     // );
     // console.log(dataValue);
@@ -104,6 +125,7 @@ window.addEventListener("load", () => {
       // console.log(newCreatedName);
     }
     console.log(newBlock);
+    // console.log(newPercent.value)
 
     let buttonsBlock = document.createElement("div");
     let delButoon = document.createElement("button");
@@ -129,9 +151,32 @@ window.addEventListener("load", () => {
       // delButoon.remove
       // delButoon
     });
-
-    editButoon.addEventListener("click", (event) => {
-      console.log(newCreatedSpanValue);
+    let editableElm = document.querySelectorAll(".info__div-spanValue");
+    editableElm.forEach((element) => {
+      editButoon.addEventListener("click", (event) => {
+        console.log(editableElm);
+        // switch(element.contentEditable){
+        //   case false:
+        //     element.contentEditable = true;
+        //     editButoon.innerHTML = 'Edit';
+        //     break;
+        //   case true:
+        //     element.contentEditable = false;
+        //     editButoon.innerHTML = 'Accept';
+        //   break;
+        // }
+        let clicked = true;
+        if(clicked){
+          element.contentEditable = true;
+          editButoon.innerHTML = 'Accept';
+          clicked = false;
+        }else if(clicked){
+          element.contentEditable = false;
+          editButoon.innerHTML = 'Edit';
+        }
+        // element.contentEditable = true;
+        // editButoon.innerHTML = 'Accept'
+      });
     });
     form.reset();
   });
