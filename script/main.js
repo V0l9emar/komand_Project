@@ -10,15 +10,13 @@ window.addEventListener("load", () => {
   let form = document.querySelector("form");
   // let input = document.querySelectorAll("input");
 
-
-  let earnedByPercent = document.querySelector('#earnedByPercent');
-  let byMonth = document.querySelector('#byMonth');
-  let finalSumm = document.querySelector('#finalSumm');
-  let month = document.querySelector('#month');
-  let percent = document.querySelector('#percent');
-  let curPercnt = document.querySelector('#curPercnt');
+  let earnedByPercent = document.querySelector("#earnedByPercent");
+  let byMonth = document.querySelector("#byMonth");
+  let finalSumm = document.querySelector("#finalSumm");
+  let month = document.querySelector("#month");
+  let percent = document.querySelector("#percent");
+  let curPercnt = document.querySelector("#curPercnt");
   // console.log(curPercnt.innerHTML)
-
 
   // percent.addEventListener('keyup', (event) => {
   //   let res = `${curPercnt.innerHTML}% годовых`;
@@ -62,17 +60,26 @@ window.addEventListener("load", () => {
    *    Click to create new card
    */
   buttonCreate.addEventListener("click", function () {
-    let earnedAmount = ((haveAmount.value/100)*newPercent.value) * (termOfDeposit.value/12);
-    let byMonth = (finalAmount.value - haveAmount.value - earnedAmount)/termOfDeposit.value;
-    console.log(earnedAmount)
+    var string = "129584145.54",
+      result = string.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+
+    console.log(result); // > 12 b 14 d
+
+    let earnedAmount =
+      (haveAmount.value / 100) * newPercent.value * (termOfDeposit.value / 12);
+    let byMonth =
+      (finalAmount.value - haveAmount.value - earnedAmount) /
+      termOfDeposit.value;
+
+    // console.log(earnedAmount)
     let card = {
-      "Прибыль по %:": `${earnedAmount.toFixed(2)} ₽`,
-      "Ежемесечный взнос:": ` ${byMonth.toFixed(2)} ₽`,
-      "Конечная сумма:": `${finalAmount.value} ₽`,
-      "Всего месяцев:": termOfDeposit.value,
+      "Прибыль по %:": `${earnedAmount.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
+      "Ежемесечный взнос:": ` ${byMonth.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
+      "Конечная сумма:": `${finalAmount.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
+      "Всего месяцев:": `${termOfDeposit.value} мес.`,
       "Процентная ставка:": `${newPercent.value}% в год`,
     };
-    console.log(newPercent.value)
+    // console.log(newPercent.value)
 
     // for (let key in card) {
     //   console.log(key);
@@ -124,7 +131,7 @@ window.addEventListener("load", () => {
       // console.log(newCreatedName.childNodes[0])
       // console.log(newCreatedName);
     }
-    console.log(newBlock);
+    // console.log(newBlock);
     // console.log(newPercent.value)
 
     let buttonsBlock = document.createElement("div");
@@ -166,13 +173,13 @@ window.addEventListener("load", () => {
         //   break;
         // }
         let clicked = true;
-        if(clicked){
+        if (clicked) {
           element.contentEditable = true;
-          editButoon.innerHTML = 'Accept';
+          editButoon.innerHTML = "Accept";
           clicked = false;
-        }else if(clicked){
+        } else if (clicked) {
           element.contentEditable = false;
-          editButoon.innerHTML = 'Edit';
+          editButoon.innerHTML = "Edit";
         }
         // element.contentEditable = true;
         // editButoon.innerHTML = 'Accept'
