@@ -401,8 +401,8 @@ window.addEventListener("load", () => {
     let btnclicked = false;
     let editableElm = document.querySelectorAll(".info__div-editSwitch");
     editButoon.addEventListener("click", (event) => {
-      console.log(editableElm);
-      console.log(btnclicked);
+      console.log(editableElm.innerHTML);
+      // console.log(btnclicked);
       if (!btnclicked) {
         editButoon.innerHTML = "Accept";
       } else {
@@ -410,14 +410,16 @@ window.addEventListener("load", () => {
       }
       editableElm.forEach(e => e.contentEditable = !btnclicked)
       btnclicked = !btnclicked;
-      // editableElm.contentEditable = false;
-
-      // for(let i=0; i<editableElm.length; i++){
-      //   const editElm = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
-      //   if(editElm.payUp < 0){
-
-      //   }
-      // }
+      console.log(editableElm.values)
+      for(let i=0; i<editableElm.length; i++){
+        const editElm = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
+        // if(editElm.payUp < 0){
+        //   editButoon.disabled = true;
+        // }else{
+        //   editButoon.disabled = false;
+        // }
+        console.log(editElm.payUp.value)
+      }
 
       // editableElm.contentEditable = true;
     });
