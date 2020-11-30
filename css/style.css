@@ -81,6 +81,11 @@ section {
 .input__div {
   /* border: 1px solid gray; */
   width: 100%;
+  /* background-color: #efefef; */
+
+}
+.card{
+  display: none;
 }
 
 .info__div,
@@ -142,7 +147,7 @@ input::-webkit-calendar-picker-indicator {
   color: gray;
   margin-top: 10px;
 }
-.info__div-spanValue {
+.info__div-spanValue, .info__div-Value {
   color: #001e80;
   font-size: 1.5em;
   font-weight: bold;
@@ -270,6 +275,22 @@ input::-webkit-calendar-picker-indicator {
     width: 100%;
   }
 
+  .card{
+    display: inline-block;
+    width: 240px;
+    height: 200px;
+    background: url(https://www.svgrepo.com/show/125026/debit-card.svg) no-repeat ;
+    background-size: cover;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    transform: rotate(45deg);
+    z-index: -1;
+    top: 30%;
+    position: absolute;
+    right: 10%;
+    fill: #001e80;
+  }
+
   .info__div {
     /* border: 1px solid gray; */
     background-color: #e6e6e6;
@@ -330,7 +351,7 @@ input::-webkit-calendar-picker-indicator {
     color: gray;
     margin-top: 10px;
   }
-  .info__div-spanValue {
+  .info__div-spanValue, .info__div-Value {
     color: #001e80;
     font-size: 1.2em;
     font-weight: bold;
