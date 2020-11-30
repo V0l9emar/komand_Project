@@ -366,20 +366,30 @@ window.addEventListener("load", () => {
       // delButoon.remove
       // delButoon
     });
-
-
+    // editableElm.contentEditable = true;
+    let btnclicked = false;
     let editableElm = document.querySelectorAll(".info__div-spanValue");
-    window.clicked = false
     editButoon.addEventListener("click", (event) => {
       console.log(editableElm);
-      if (btnclicked) {
+      console.log(btnclicked);
+      if (!btnclicked) {
         editableElm.contentEditable = true;
+        // btnclicked = !btnclicked;
         editButoon.innerHTML = "Accept";
       } else {
         editableElm.contentEditable = false;
+        // btnclicked = !btnclicked;
         editButoon.innerHTML = "Edit";
       }
       btnclicked = !btnclicked;
+      // editableElm.contentEditable = false;
+
+      // for(let i=0; i<editableElm.length; i++){
+      //   const editElm = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
+      //   if(editElm.payUp < 0){
+
+      //   }
+      // }
 
       // editableElm.contentEditable = true;
     });
