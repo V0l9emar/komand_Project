@@ -73,9 +73,44 @@ function calc(cost, rate, term, first, name = newName.value) {
   return { payments, cost, payUp, first, percentSumm, paySumm, term, 'rate': rate * 100, name };
 }
 
+function makeEditable(ctrlArr = ['final-amount', 'new-date', 'have-amount', 'new-percent']) {
+  const controls = ctrlArr.map(e => document.querySelector('.' + e));
+  function valid() {
+    let [cost, term, first, rate] = controls.map(e => {
+      if (e.value) {
+        return parseFloat(e.value)
+      } else {
+        return 0
+      }
+    })
+    let v = (cost > 10) && (rate > 1) && (rate < 99) && (term > 1) && (term < 1200) && (first < cost) && (first > 0)
+    if (v) {
+      const d = calc(cost, rate, term, first);
+      if (v && d.payUp > 0 && d.payUp < Infinity) {
+        console.log(d);
+        document.getElementById('earnedByPercent').innerText = (d.percentSumm).toFixed(2);
+        document.getElementById('byMonth').innerText = (d.payUp).toFixed(2);
+        document.getElementById('month').innerText = (d.term).toFixed(2);
+        document.getElementById('curPercnt').innerText = (d.rate).toFixed(2);
+        document.getElementById('finalSumm').innerText = (d.cost).toFixed(2);
+      } else {
+        document.getElementById('earnedByPercent').innerText = '';
+        document.getElementById('byMonth').innerText = '';
+        document.getElementById('month').innerText = '';
+        document.getElementById('curPercnt').innerText = '';
+        document.getElementById('finalSumm').innerText = '';
+      }
+    }
+  }
+  controls.forEach(e => {
+    e.addEventListener('keyup', valid)
+  })
+}
+
+makeEditable();
 
 class makeGraph {
-  constructor(mainCls, width = '375', height = '50', colors = ['red', 'green', 'blue']) {
+  constructor(mainCls, width = '375', height = '50', colors = ['#001e80', 'green', '#d01cca']) {
     this.colors = {};
     this.colors.percent = colors[1];
     this.colors.all = colors[0];
@@ -105,10 +140,10 @@ class makeGraph {
 
   makeLegend(object) {
     this.legend = this.recreateUl('legend');
-    this.legend.style.marginTop = '30px';
+    this.legend.style.margin = '15px auto';
     this.legend.style.display = 'flex';
     this.legend.style.flexDirection = 'column';
-    this.legend.style.justifyContent = "center"
+    this.legend.style.alignItems = 'baseline'
     this.legend.style.width = '100%';
     const makeLi = (color, text) => {
       const li = document.createElement('li');
@@ -123,7 +158,7 @@ class makeGraph {
       li.appendChild(colorBlock);
       li.appendChild(textBlock);
       li.style.display = 'flex';
-      li.style.fontSize = this.width / 45 + 'px';
+      li.style.fontSize = this.width / 30 + 'px';
       li.style.padding = '1px';
       li.style.justifyContent = "center"
       li.style.marginBottom = "5px";
@@ -131,7 +166,7 @@ class makeGraph {
       this.legend.appendChild(li);
     }
     makeLi(this.colors.percent, 'Погашено процентами: ' + (object.percentSumm).toFixed(2));
-    makeLi(this.colors.all, 'Собственные средства: ' + (object.paySumm).toFixed(2));
+    makeLi(this.colors.all, 'Собственные средства: ' + (object.paySumm - object.first).toFixed(2));
     makeLi(this.colors.first, 'Начальный платёж: ' + (object.first).toFixed(2));
     const li = document.createElement('li');
     return this.legend
@@ -139,19 +174,24 @@ class makeGraph {
 
   makeList(object) {
     this.list = this.recreateUl('list');
-    this.list.style.marginTop = '30px'
+    this.list.style.marginTop = '15px'
     this.list.style.display = 'flex'
     this.list.style.flexDirection = 'column'
     this.list.style.width = '100%';
-    object.payments.forEach(month => {
+    object.payments.forEach((month, i) => {
       const li = document.createElement('li');
       li.style.display = 'flex';
-      li.style.fontSize = this.width / 45 + 'px'
+      li.style.fontSize = this.width / 35 + 'px'
       li.style.padding = '1px';
       li.style.alignItems = "center"
       li.style.justifyContent = "space-between"
       li.style.marginBottom = "5px";
       li.style.textTransform = 'uppercase';
+      li.style.padding = "2px 5px";
+      if (i % 2 === 0) {
+        li.style.backgroundColor = '#757E9F';
+        li.style.color = '#E6E6E6'
+      }
       const monthBlock = document.createElement('p');
       const currentBlock = document.createElement('p');
       const percentsBlock = document.createElement('p');
@@ -358,19 +398,19 @@ window.addEventListener("load", () => {
     buttonsBlock.append(editButoon);
 
     // Graph block
-    // function makeGraphEm(cost, rate, term, first, name = 'test') {
-    //   const graphDiv = document.createElement("div");
+    function makeGraphEm(cost, rate, term, first, name = 'test') {
+      const graphDiv = document.createElement("div");
 
-    //   graphDiv.classList.add('graph');
-    //   graphDiv.style.margin = "0 auto";
-    //   newCreatedBlock.appendChild(graphDiv);
-    //   const td = calc(cost, rate, term, first, name);
-    //   const graph = new makeGraph(graphDiv, newCreatedBlock.offsetWidth * 2 / 3, 200);
-    //   graph.drawGraph(td);
-    //   return graphDiv;
-    // }
-
-    // makeGraphEm(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
+      graphDiv.classList.add('graph');
+      graphDiv.style.margin = "0 auto";
+      newCreatedBlock.appendChild(graphDiv);
+      const td = calc(cost, rate, term, first, name);
+      const graph = new makeGraph(graphDiv, newCreatedBlock.offsetWidth * 3 / 5, 200);
+      graph.drawGraph(td);
+      return graphDiv;
+    }
+    const graphDiv = makeGraphEm(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
+    graphDiv.classList.add('graphBlock')
 
 
 
