@@ -70,25 +70,24 @@ function calc(cost, rate, term, first, name = newName.value) {
     percentSumm += percents;
     payments.push({ curconto, count, month, percents, payUp });
   }
-  return { payments, cost, payUp, first, percentSumm, paySumm, term, 'rate': rate * 100, name };
+  return { payments, cost, payUp, first, percentSumm, paySumm, term, 'rate': rate * 100, name, first };
 }
 
 
 class makeGraph {
-  constructor(mainCls, width = '375', height = '50', colors = ['red', 'green', 'blue']) {
+  constructor(mainCls, width = '375', colors = ['red', 'green', 'blue']) {
     this.colors = {};
     this.colors.percent = colors[1];
     this.colors.all = colors[0];
     this.colors.first = colors[2];
     this.width = width;
-    this.height = height;
-    // this.div = document.querySelector(mainCls);
-    this.div = mainCls;
+    this.height = width;
+    this.div = document.querySelector(mainCls);
     this.div.style.position = 'relative';
     this.div.style.width = width + 'px'
     this.div.style.height = "100%"
     this.canvas = document.createElement('canvas');
-    this.canvas.height = height;
+    this.canvas.height = width;
     this.canvas.width = width;
     this.div.appendChild(this.canvas);
   }
@@ -108,14 +107,12 @@ class makeGraph {
     this.legend.style.marginTop = '30px';
     this.legend.style.display = 'flex';
     this.legend.style.flexDirection = 'column';
-    this.legend.style.justifyContent = "center"
     this.legend.style.width = '100%';
     const makeLi = (color, text) => {
       const li = document.createElement('li');
       const colorBlock = document.createElement('div');
       colorBlock.style.backgroundColor = color;
-      colorBlock.style.width = 30 + 'px';
-      colorBlock.style.height = 30 + 'px';
+      colorBlock.style.width = this.width / 6 + 'px';
       colorBlock.style.marginRight = '5px';
       const textBlock = document.createElement('p');
       textBlock.style.textAlign = 'left';
@@ -123,9 +120,9 @@ class makeGraph {
       li.appendChild(colorBlock);
       li.appendChild(textBlock);
       li.style.display = 'flex';
-      li.style.fontSize = this.width / 45 + 'px';
+      li.style.fontSize = this.width / 25 + 'px';
       li.style.padding = '1px';
-      li.style.justifyContent = "center"
+      li.style.justifyContent = "space-between"
       li.style.marginBottom = "5px";
       li.style.textTransform = 'uppercase';
       this.legend.appendChild(li);
@@ -146,7 +143,7 @@ class makeGraph {
     object.payments.forEach(month => {
       const li = document.createElement('li');
       li.style.display = 'flex';
-      li.style.fontSize = this.width / 45 + 'px'
+      li.style.fontSize = this.width / 27 + 'px'
       li.style.padding = '1px';
       li.style.alignItems = "center"
       li.style.justifyContent = "space-between"
@@ -325,10 +322,6 @@ window.addEventListener("load", () => {
       newCreatedName.classList.add("info__div-add-data");
       newCreatedSpanName.classList.add("info__div-span");
       newCreatedSpanValue.classList.add("info__div-spanValue");
-
-      if (key !== "Конечная сумма:") {
-        newCreatedSpanValue.classList.add("info__div-editSwitch");
-      }
       hr.classList.add("line");
 
       // newCreatedSpanName.contentEditable = true;
@@ -358,37 +351,13 @@ window.addEventListener("load", () => {
     buttonsBlock.append(editButoon);
 
     // Graph block
-    // function makeGraphEm(cost, rate, term, first, name = 'test') {
-    //   const graphDiv = document.createElement("div");
+    const graphDiv = document.createElement("div");
+    graphDiv.classList.add('graph');
+    newCreatedBlock.appendChild(graphDiv);
+    const td = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
+    const graph = new makeGraph('.graph', 200);
+    graph.drawGraph(td);
 
-    //   graphDiv.classList.add('graph');
-    //   graphDiv.style.margin = "0 auto";
-    //   newCreatedBlock.appendChild(graphDiv);
-    //   const td = calc(cost, rate, term, first, name);
-    //   const graph = new makeGraph(graphDiv, newCreatedBlock.offsetWidth * 2 / 3, 200);
-    //   graph.drawGraph(td);
-    //   return graphDiv;
-    // }
-
-    // makeGraphEm(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
-
-
-
-    // const graphButton = document.createElement("button");
-    // newCreatedBlock.appendChild(graphButton);
-    // graphButton.classList.add("info__div-delete");
-    // graphButton.innerHTML = 'График';
-    // graphButton.addEventListener('click', e => {
-    //   const g = makeGraph(1000, 1, 5, 100)
-    //   newCreatedBlock.appendChild(g);
-    // });
-
-    // const graphDiv = document.createElement("div");
-    // graphDiv.classList.add('graph');
-    // newCreatedBlock.appendChild(graphDiv);
-    // const td = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
-    // const graph = new makeGraph('.graph', 200);
-    // graph.drawGraph(td);
     /*
      *    Delete button click
      */
@@ -397,27 +366,20 @@ window.addEventListener("load", () => {
       // delButoon.remove
       // delButoon
     });
-    // editableElm.contentEditable = true;
-    let btnclicked = false;
-    let editableElm = document.querySelectorAll(".info__div-editSwitch");
+
+
+    let editableElm = document.querySelectorAll(".info__div-spanValue");
+    window.clicked = false
     editButoon.addEventListener("click", (event) => {
       console.log(editableElm);
-      console.log(btnclicked);
-      if (!btnclicked) {
+      if (btnclicked) {
+        editableElm.contentEditable = true;
         editButoon.innerHTML = "Accept";
       } else {
+        editableElm.contentEditable = false;
         editButoon.innerHTML = "Edit";
       }
-      editableElm.forEach(e => e.contentEditable = !btnclicked)
       btnclicked = !btnclicked;
-      // editableElm.contentEditable = false;
-
-      // for(let i=0; i<editableElm.length; i++){
-      //   const editElm = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
-      //   if(editElm.payUp < 0){
-
-      //   }
-      // }
 
       // editableElm.contentEditable = true;
     });
