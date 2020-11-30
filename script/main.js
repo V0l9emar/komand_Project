@@ -10,6 +10,7 @@ window.addEventListener("load", () => {
   let form = document.querySelector("form");
   // let input = document.querySelectorAll("input");
   let card;
+  let btnclicked = false;
 
   let earnedByPercent = document.querySelector("#earnedByPercent");
   let byMonth = document.querySelector("#byMonth");
@@ -53,38 +54,38 @@ window.addEventListener("load", () => {
   // }
   //
 
-//   function calc(cost, rate, term, first, name = 'test') {
-//     rate = rate / 100;
-//     const trate = 1 + rate
-//     rows = ((cost - first) * rate * (1 / (trate ** term - 1))) - (first * rate);
-//     let payUp = rows;
-//     let count = first;
-//     let percentSumm = 0;
-//     let paySumm = first + (payUp * term);
-//     const payments = [];
-//     for (let month = 1; month <= term; month++) {
-//         const percents = count * rate;
-//         curconto = count;
-//         count += percents;
-//         count += payUp;
-//         // if (count <= cost) {
-//         //     payments.push({ curconto, count, month, percents, payUp });
-//         // } else {
-//         //     payments.push({ curconto, 'count': cost, month, percents, 'payUp': payUp - (count - cost) });
-//         // }
-//         percentSumm += percents;
-//         payments.push({ curconto, count, month, percents, payUp });
-//     }
-//     return { payments, cost, payUp, first, percentSumm, paySumm, term, 'rate': rate * 100, name, first };
-// }
+  //   function calc(cost, rate, term, first, name = 'test') {
+  //     rate = rate / 100;
+  //     const trate = 1 + rate
+  //     rows = ((cost - first) * rate * (1 / (trate ** term - 1))) - (first * rate);
+  //     let payUp = rows;
+  //     let count = first;
+  //     let percentSumm = 0;
+  //     let paySumm = first + (payUp * term);
+  //     const payments = [];
+  //     for (let month = 1; month <= term; month++) {
+  //         const percents = count * rate;
+  //         curconto = count;
+  //         count += percents;
+  //         count += payUp;
+  //         // if (count <= cost) {
+  //         //     payments.push({ curconto, count, month, percents, payUp });
+  //         // } else {
+  //         //     payments.push({ curconto, 'count': cost, month, percents, 'payUp': payUp - (count - cost) });
+  //         // }
+  //         percentSumm += percents;
+  //         payments.push({ curconto, count, month, percents, payUp });
+  //     }
+  //     return { payments, cost, payUp, first, percentSumm, paySumm, term, 'rate': rate * 100, name, first };
+  // }
 
 
-  function count(){
+  function count() {
     let earnedAmount =
-    (haveAmount.value / 100) * newPercent.value * (termOfDeposit.value / 12);
-  let byEachMonth =
-    (finalAmount.value - haveAmount.value - earnedAmount) /
-    termOfDeposit.value;
+      (haveAmount.value / 100) * newPercent.value * (termOfDeposit.value / 12);
+    let byEachMonth =
+      (finalAmount.value - haveAmount.value - earnedAmount) /
+      termOfDeposit.value;
 
     card = {
       "Прибыль по %:": `${earnedAmount.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
@@ -199,6 +200,7 @@ window.addEventListener("load", () => {
 
 
     let editableElm = document.querySelectorAll(".info__div-spanValue");
+    window.clicked = false
     editButoon.addEventListener("click", (event) => {
       console.log(editableElm);
       // switch(editableElm){
@@ -211,18 +213,17 @@ window.addEventListener("load", () => {
       //     editButoon.innerHTML = 'Accept';
       //   break;
       // }
-
-      let clicked = true;
-      if (clicked) {
+      if (btnclicked) {
         editableElm.contentEditable = true;
         editButoon.innerHTML = "Accept";
-        clicked = false;
-      } else if (clicked) {
+      } else {
         editableElm.contentEditable = false;
         editButoon.innerHTML = "Edit";
       }
-      editableElm.contentEditable = true;
-      editButoon.innerHTML = 'Accept'
+      btnclicked = !btnclicked;
+
+      // editableElm.contentEditable = true;
+      // editButoon.innerHTML = 'Accept'
     });
 
     // editableElm.forEach((element) => {
