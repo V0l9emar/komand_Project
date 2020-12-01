@@ -241,75 +241,8 @@ class makeGraph {
 
 
 window.addEventListener("load", () => {
-  //  /*
-  //  *  announcement get data from inputs
-  //  */
-  // let newName = document.querySelector(".new-name");
-  // let finalAmount = document.querySelector(".final-amount");
-  // let termOfDeposit = document.querySelector(".new-date");
-  // let haveAmount = document.querySelector(".have-amount");
-  // let newPercent = document.querySelector(".new-percent");
-  // let form = document.querySelector("form");
-  // // let input = document.querySelectorAll("input");
-  // let card;
-  // let btnclicked = false;
-
-  // let earnedByPercent = document.querySelector("#earnedByPercent");
-  // let byMonth = document.querySelector("#byMonth");
-  // let finalSumm = document.querySelector("#finalSumm");
-  // let month = document.querySelector("#month");
-  // let percent = document.querySelector("#percent");
-  // let curPercnt = document.querySelector("#curPercnt");
-
-  // /*
-  //  *  announcement button for create elements
-  //  */
-  // let buttonCreate = document.querySelector(".butt__add");
-
-  // /*
-  //  *  announcement new block for new elements
-  //  */
-  // let newInfoDiv = document.querySelector(".info__div");
-  // let newBlock = document.querySelector(".new__elm-block");
-
-  /*
-   *  Object with names
-   */
-
-  //   function calc(cost, rate, term, first, name = 'test') {
-  //     rate = rate / 100;
-  //     const trate = 1 + rate
-  //     rows = ((cost - first) * rate * (1 / (trate ** term - 1))) - (first * rate);
-  //     let payUp = rows;
-  //     let count = first;
-  //     let percentSumm = 0;
-  //     let paySumm = first + (payUp * term);
-  //     const payments = [];
-  //     for (let month = 1; month <= term; month++) {
-  //         const percents = count * rate;
-  //         curconto = count;
-  //         count += percents;
-  //         count += payUp;
-  //         // if (count <= cost) {
-  //         //     payments.push({ curconto, count, month, percents, payUp });
-  //         // } else {
-  //         //     payments.push({ curconto, 'count': cost, month, percents, 'payUp': payUp - (count - cost) });
-  //         // }
-  //         percentSumm += percents;
-  //         payments.push({ curconto, count, month, percents, payUp });
-  //     }
-  //     return { payments, cost, payUp, first, percentSumm, paySumm, term, 'rate': rate * 100, name, first };
-  // }
-
 
   function count() {
-    // let earnedAmount =
-    //   (haveAmount.value / 100) * newPercent.value * (termOfDeposit.value / 12);
-    // let byEachMonth =
-    //   (finalAmount.value - haveAmount.value - earnedAmount) /
-    //   termOfDeposit.value;
-
-
     let res = calc(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
     card = {
       "Прибыль по %:": `${res.percentSumm.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
@@ -434,8 +367,6 @@ window.addEventListener("load", () => {
      */
     delButoon.addEventListener("click", (event) => {
       newCreatedBlock.remove();
-      // delButoon.remove
-      // delButoon
     });
     // editableElm.contentEditable = true;
     let btnclicked = false;
