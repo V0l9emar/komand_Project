@@ -473,6 +473,7 @@ window.addEventListener("load", () => {
 
 
   console.log(new Date());
+  let res;
   /*
    *    Click to create new card
    */
@@ -480,14 +481,15 @@ window.addEventListener("load", () => {
     //Dialog
     dlg.new(e => {
       if (e === "add") {
-        let res = dlg.curem;
+        res = dlg.curem;
         card = {
           "Прибыль по %:": `${res.percentSumm.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
           "Ежемесечный взнос:": ` ${res.payUp.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
-          "Конечная сумма:": `${finalAmount.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
-          "Всего месяцев:": `${termOfDeposit.value} мес.`,
-          "Процентная ставка:": `${newPercent.value}% в мес.`,
+          "Конечная сумма:": `${res.cost.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`,
+          "Всего месяцев:": `${res.term} мес.`,
+          "Процентная ставка:": `${res.rate}% в мес.`,
         }
+        create();
       }
     });
 
@@ -509,7 +511,7 @@ window.addEventListener("load", () => {
     function create() {
       let newCreatedBlock = document.createElement("div");
       let newCreatedHeaderName = document.createElement("h2");
-      newCreatedHeaderName.innerHTML = card.name;
+      newCreatedHeaderName.innerHTML = res.name;
       newCreatedBlock.classList.add("info__created-block");
       newCreatedHeaderName.classList.add("info__div-named");
 
@@ -574,7 +576,7 @@ window.addEventListener("load", () => {
         graph.drawGraph(td);
         return graphDiv;
       }
-      const graphDiv = makeGraphEm(parseFloat(finalAmount.value), parseFloat(newPercent.value), parseFloat(termOfDeposit.value), parseFloat(haveAmount.value));
+      const graphDiv = makeGraphEm(parseFloat(res.cost), parseFloat(res.rate * 100), parseFloat(res.term), parseFloat(res.first));
       graphDiv.classList.add('graphBlock')
 
 
@@ -626,7 +628,7 @@ window.addEventListener("load", () => {
 
         // editableElm.contentEditable = true;
       });
-      form.reset();
+      //form.reset();
     }
   });
 });
