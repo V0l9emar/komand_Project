@@ -170,9 +170,11 @@ class makeGraph {
         return li;
     }
 
+    makeHover() { }
+
 
     makeList(object) {
-        this.list = this.recreateUl('list');
+        this.list, this.hoverBtn = this.recreateUl('list');
         this.list.style.marginTop = '15px'
         this.list.style.display = 'flex'
         this.list.style.flexDirection = 'column'
@@ -289,6 +291,7 @@ class Dlg {
     lockScroll() {
         this.wraper.style.display = 'flex';
         this.body.style.overflow = "hidden";
+        debugger
     }
 
     lockUnScroll() {
@@ -590,9 +593,28 @@ window.addEventListener("load", () => {
             buttonsBlock.append(delButoon);
             buttonsBlock.append(editButoon);
 
-            // Graph block
-
+            // Hover block
             const graphDiv = document.createElement("div");
+            graphDiv.style.display = 'none';
+            const hoverBtn = document.createElement("button");
+            hoverBtn.innerText = "Подробнее \u2193"
+            hoverBtn.dataset.state = false;
+            hoverBtn.classList.add('hoverbutton');
+            newCreatedBlock.appendChild(hoverBtn);
+            hoverBtn.addEventListener('click', function (e) {
+                if (this.dataset.state === 'true') {
+                    hoverBtn.dataset.state = false;
+                    graphDiv.style.display = 'none';
+                    hoverBtn.innerText = "Подробнее \u2193"
+                } else {
+                    hoverBtn.dataset.state = true;
+                    graphDiv.style.display = 'block';
+                    hoverBtn.innerText = "Скрыть \u2191"
+                }
+                console.log(this);
+
+            })
+
             graphDiv.classList.add('graph');
             graphDiv.style.margin = "0 auto";
             graphDiv.classList.add('graphBlock')

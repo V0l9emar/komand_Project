@@ -371,3 +371,16 @@ input::-webkit-inner-spin-button, input::-webkit-calendar-picker-indicator {
 .graphBlock {
   padding-top: 24px;
 }
+
+.hoverbutton {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  background-color: #001E80;
+  color: wheat;
+  cursor: pointer;
+}
+
+.hoverbutton:hover {
+  background-color: #2B3A6E;
+}
