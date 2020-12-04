@@ -291,7 +291,6 @@ class Dlg {
     lockScroll() {
         this.wraper.style.display = 'flex';
         this.body.style.overflow = "hidden";
-        debugger
     }
 
     lockUnScroll() {
@@ -611,8 +610,6 @@ window.addEventListener("load", () => {
                     graphDiv.style.display = 'block';
                     hoverBtn.innerText = "Скрыть \u2191"
                 }
-                console.log(this);
-
             })
 
             graphDiv.classList.add('graph');
